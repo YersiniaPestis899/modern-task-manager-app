@@ -29,12 +29,12 @@ export function TaskList({ tasks, filter, onUpdateTask, onDeleteTask }: TaskList
     }
 
     // ステータスフィルター
-    if (filter.status && !filter.status.includes(task.status)) {
+    if (filter.status && !filter.status.includes((task.status ?? 'pending') as any)) {
       return false
     }
 
     // 優先度フィルター
-    if (filter.priority && !filter.priority.includes(task.priority)) {
+    if (filter.priority && !filter.priority.includes((task.priority ?? 'medium') as any)) {
       return false
     }
 
