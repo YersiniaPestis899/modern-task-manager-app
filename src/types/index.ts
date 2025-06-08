@@ -27,6 +27,7 @@ export type TaskFormData = {
   due_date?: Date | null
   due_time?: string
   priority: TaskPriority
+  status?: TaskStatus
   category?: string
   reminder_minutes?: number
   is_recurring?: boolean
