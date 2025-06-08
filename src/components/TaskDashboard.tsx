@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { User } from '@supabase/supabase-js'
-import { Task, TaskFilter } from '@/types'
+import { Task, TaskFilter, TaskFormData } from '@/types'
 import { supabase } from '@/lib/supabase'
 import { TaskList } from './TaskList'
 import { TaskForm } from './TaskForm'
