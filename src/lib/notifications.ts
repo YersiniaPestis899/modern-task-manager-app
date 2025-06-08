@@ -6,9 +6,7 @@ export interface NotificationOptions {
   icon?: string
   badge?: string
   tag?: string
-  renotify?: boolean
   requireInteraction?: boolean
-  actions?: NotificationAction[]
   data?: any
 }
 
@@ -74,9 +72,7 @@ export class TaskNotificationManager {
           icon: options.icon || '/favicon.svg',
           badge: options.badge || '/favicon.svg',
           tag: options.tag,
-          renotify: options.renotify || false,
           requireInteraction: options.requireInteraction || false,
-          actions: options.actions || [],
           data: options.data
         })
       } else {
@@ -85,7 +81,6 @@ export class TaskNotificationManager {
           body: options.body,
           icon: options.icon || '/favicon.svg',
           tag: options.tag,
-          renotify: options.renotify || false,
           requireInteraction: options.requireInteraction || false,
           data: options.data
         })
@@ -143,16 +138,6 @@ export class TaskNotificationManager {
       body: `期限: ${dueDateText}${dueTime}`,
       tag: `task-reminder-${task.id}`,
       requireInteraction: true,
-      actions: [
-        {
-          action: 'complete',
-          title: '完了にする'
-        },
-        {
-          action: 'snooze',
-          title: '10分後に再通知'
-        }
-      ],
       data: {
         taskId: task.id,
         type: 'reminder'
@@ -166,16 +151,6 @@ export class TaskNotificationManager {
       body: `タスクの期限が来ました`,
       tag: `task-due-${task.id}`,
       requireInteraction: true,
-      actions: [
-        {
-          action: 'complete',
-          title: '完了にする'
-        },
-        {
-          action: 'extend',
-          title: '期限を延長'
-        }
-      ],
       data: {
         taskId: task.id,
         type: 'due'
@@ -200,9 +175,9 @@ export class TaskNotificationManager {
   cancelAllReminders(): void {
     if (!this.isClient) return
     
-    for (const [taskId, timeoutId] of this.scheduledNotifications) {
+    Array.from(this.scheduledNotifications.entries()).forEach(([taskId, timeoutId]) => {
       clearTimeout(timeoutId)
-    }
+    })
     this.scheduledNotifications.clear()
   }
 
