@@ -1,0 +1,45 @@
+{
+  "name": "Modern Task Manager",
+  "short_name": "TaskManager",
+  "description": "A modern, feature-rich task management application with calendar integration and smart notifications",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#3b82f6",
+  "orientation": "portrait-primary",
+  "categories": ["productivity", "business", "utilities"],
+  "lang": "ja",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "New Task",
+      "short_name": "New Task",
+      "description": "Create a new task",
+      "url": "/?action=new-task"
+    },
+    {
+      "name": "Calendar",
+      "short_name": "Calendar", 
+      "description": "View calendar",
+      "url": "/?view=calendar"
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false,
+  "scope": "/",
+  "id": "modern-task-manager",
+  "display_override": ["window-controls-overlay", "standalone", "minimal-ui", "browser"],
+  "edge_side_panel": {
+    "preferred_width": 400
+  },
+  "launch_handler": {
+    "client_mode": ["focus-existing", "auto"]
+  }
+}
