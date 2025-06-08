@@ -76,7 +76,11 @@ export function TaskDashboard({ user }: TaskDashboardProps) {
       const taskToInsert = {
         title: taskData.title || 'Untitled Task',
         description: taskData.description || null,
-        due_date: taskData.due_date || null,
+        due_date: taskData.due_date
+          ? typeof taskData.due_date === 'string'
+            ? taskData.due_date
+            : taskData.due_date.toISOString()
+          : null,
         due_time: taskData.due_time || null,
         priority: taskData.priority || 'medium',
         status: taskData.status || 'pending',
