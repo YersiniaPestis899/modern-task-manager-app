@@ -96,12 +96,12 @@ export function TaskItem({ task, onUpdate, onDelete }: TaskItemProps) {
             size="icon"
             className="h-8 w-8 rounded-full mt-1"
             onClick={() => {
-              const nextStatus = task.status === 'completed' ? 'pending' : 'completed'
+              const nextStatus = (task.status ?? 'pending') === 'completed' ? 'pending' : 'completed'
               handleStatusChange(nextStatus)
             }}
             disabled={loading}
           >
-            {getStatusIcon(task.status)}
+            {getStatusIcon(task.status ?? 'pending')}
           </Button>
 
           {/* タスク内容 */}
@@ -123,18 +123,18 @@ export function TaskItem({ task, onUpdate, onDelete }: TaskItemProps) {
                 {/* メタ情報 */}
                 <div className="flex flex-wrap items-center gap-4 mt-2 text-xs text-gray-500">
                   {/* 優先度 */}
-                  <div className={`inline-flex items-center gap-1 px-2 py-1 rounded-full border ${getPriorityColor(task.priority)}`}>
-                    <span>{getPriorityIcon(task.priority)}</span>
-                    <span className="capitalize">{task.priority}</span>
+                  <div className={`inline-flex items-center gap-1 px-2 py-1 rounded-full border ${getPriorityColor(task.priority ?? 'medium')}`}>
+                    <span>{getPriorityIcon(task.priority ?? 'medium')}</span>
+                    <span className="capitalize">{task.priority ?? 'medium'}</span>
                   </div>
 
                   {/* ステータス */}
-                  <div className={`inline-flex items-center gap-1 px-2 py-1 rounded-full border ${getStatusColor(task.status)}`}>
-                    {getStatusIcon(task.status)}
+                  <div className={`inline-flex items-center gap-1 px-2 py-1 rounded-full border ${getStatusColor(task.status ?? 'pending')}`}>
+                    {getStatusIcon(task.status ?? 'pending')}
                     <span>
-                      {task.status === 'completed' ? '完了' :
-                       task.status === 'in_progress' ? '進行中' :
-                       task.status === 'pending' ? '未着手' : 'キャンセル'}
+                      {(task.status ?? 'pending') === 'completed' ? '完了' :
+                       (task.status ?? 'pending') === 'in_progress' ? '進行中' :
+                       (task.status ?? 'pending') === 'pending' ? '未着手' : 'キャンセル'}
                     </span>
                   </div>
 
