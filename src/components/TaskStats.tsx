@@ -54,7 +54,7 @@ export function TaskStats({ tasks }: TaskStatsProps) {
     }
 
     // カテゴリ別統計
-    const categories = [...new Set(tasks.filter(t => t.category).map(t => t.category!))]
+    const categories = Array.from(new Set(tasks.filter(t => t.category).map(t => t.category!)))
     const byCategory = categories.reduce((acc, category) => {
       acc[category] = tasks.filter(t => t.category === category).length
       return acc
@@ -66,7 +66,7 @@ export function TaskStats({ tasks }: TaskStatsProps) {
     // 今月の統計
     const thisMonth = new Date().toISOString().slice(0, 7) // YYYY-MM
     const thisMonthTasks = tasks.filter(t => 
-      t.created_at.startsWith(thisMonth)
+      (t.created_at ?? '').startsWith(thisMonth)
     ).length
     const thisMonthCompleted = tasks.filter(t => 
       t.completed_at && t.completed_at.startsWith(thisMonth)
@@ -84,13 +84,13 @@ export function TaskStats({ tasks }: TaskStatsProps) {
       weekEnd.setHours(23, 59, 59, 999)
       
       const weekTasks = tasks.filter(t => {
-        const taskDate = new Date(t.created_at)
+        const taskDate = new Date(t.created_at ?? 0)
         return taskDate >= weekStart && taskDate <= weekEnd
       })
       
       const weekCompleted = tasks.filter(t => {
         if (!t.completed_at) return false
-        const completedDate = new Date(t.completed_at)
+        const completedDate = new Date(t.completed_at ?? 0)
         return completedDate >= weekStart && completedDate <= weekEnd
       })
       
@@ -350,9 +350,9 @@ export function TaskStats({ tasks }: TaskStatsProps) {
                 <div key={category} className="space-y-2">
                   <div className="flex items-center justify-between">
                     <span className="text-sm font-medium">{category}</span>
-                    <span className="text-sm text-gray-600">{count}</span>
+                    <span className="text-sm text-gray-600">{String(count)}</span>
                   </div>
-                  <ProgressBar value={count} max={stats.total} color="bg-purple-500" />
+                  <ProgressBar value={Number(count)} max={stats.total} color="bg-purple-500" />
                 </div>
               ))}
             </div>
