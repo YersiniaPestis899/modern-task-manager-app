@@ -61,7 +61,7 @@ export function TaskCalendar({ tasks, onUpdateTask, onCreateTask }: TaskCalendar
         title: task.title,
         start: new Date(task.due_date + (task.due_time ? `T${task.due_time}` : 'T09:00')),
         end: new Date(task.due_date + (task.due_time ? `T${task.due_time}` : 'T10:00')),
-        color: getPriorityColor(task.priority),
+        color: getPriorityColor(task.priority || 'medium'),),
         task,
       }))
   }, [tasks])

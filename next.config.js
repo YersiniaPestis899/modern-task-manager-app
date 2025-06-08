@@ -1,20 +1,21 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  experimental: {
-    serverActions: {
-      allowedOrigins: ['localhost:3000', '*.vercel.app']
-    }
-  },
+  reactStrictMode: true,
+  swcMinify: true,
   images: {
-    domains: ['localhost'],
-    unoptimized: process.env.NODE_ENV === 'development'
+    domains: ['lh3.googleusercontent.com'],
+  },
+  experimental: {
+    typedRoutes: true,
   },
   eslint: {
-    dirs: ['src']
+    // Build時のESLintエラーを警告に変更（一時的）
+    ignoreDuringBuilds: false,
   },
   typescript: {
-    tsconfigPath: './tsconfig.json'
-  }
+    // Build時のTypeScriptエラーを一時的に警告に変更
+    ignoreBuildErrors: false,
+  },
 }
 
 module.exports = nextConfig
