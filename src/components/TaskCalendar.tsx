@@ -193,11 +193,11 @@ export function TaskCalendar({ tasks, onUpdateTask, onCreateTask }: TaskCalendar
                               ? 'bg-green-100 text-green-800 line-through'
                               : taskIsOverdue
                               ? 'bg-red-100 text-red-800'
-                              : getPriorityColor(task.priority).includes('red')
+                              : getPriorityColor(task.priority || 'medium').includes('red')
                               ? 'bg-red-100 text-red-800'
-                              : getPriorityColor(task.priority).includes('orange')
+                              : getPriorityColor(task.priority || 'medium').includes('orange')
                               ? 'bg-orange-100 text-orange-800'
-                              : getPriorityColor(task.priority).includes('yellow')
+                              : getPriorityColor(task.priority || 'medium').includes('yellow')
                               ? 'bg-yellow-100 text-yellow-800'
                               : 'bg-blue-100 text-blue-800'
                           }`}
@@ -262,7 +262,7 @@ export function TaskCalendar({ tasks, onUpdateTask, onCreateTask }: TaskCalendar
                         <p className="text-sm text-gray-600 mt-1">{task.description}</p>
                       )}
                     </div>
-                    <div className={`px-2 py-1 rounded text-xs ${getPriorityColor(task.priority)}`}>
+                    <div className={`px-2 py-1 rounded text-xs ${getPriorityColor(task.priority || 'medium')}`}>
                       {task.priority}
                     </div>
                   </div>
@@ -333,7 +333,7 @@ export function TaskCalendar({ tasks, onUpdateTask, onCreateTask }: TaskCalendar
                   )}
                 </div>
                 
-                <div className={`inline-flex items-center gap-1 px-2 py-1 rounded ${getPriorityColor(selectedTask.priority)}`}>
+                <div className={`inline-flex items-center gap-1 px-2 py-1 rounded ${getPriorityColor(selectedTask.priority || 'medium')}`}>
                   優先度: {selectedTask.priority}
                 </div>
                 
