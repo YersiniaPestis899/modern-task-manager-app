@@ -70,16 +70,27 @@ export function TaskDashboard({ user }: TaskDashboardProps) {
   }
 
   // タスクの作成
-  const createTask = async (taskData: Partial<Task>) => {
+  const createTask = async (taskData: TaskFormData | Partial<Task>) => {
     try {
+      // 必須フィールドの確認とデフォルト値の設定
+      const taskToInsert = {
+        title: taskData.title || 'Untitled Task',
+        description: taskData.description || null,
+        due_date: taskData.due_date || null,
+        due_time: taskData.due_time || null,
+        priority: taskData.priority || 'medium',
+        status: taskData.status || 'pending',
+        category: taskData.category || null,
+        reminder_minutes: taskData.reminder_minutes || null,
+        is_recurring: taskData.is_recurring || false,
+        recurring_pattern: taskData.recurring_pattern || null,
+        tags: taskData.tags || [],
+        user_id: user.id,
+      }
+
       const { data, error } = await supabase
         .from('tasks')
-        .insert([
-          {
-            ...taskData,
-            user_id: user.id,
-          }
-        ])
+        .insert([taskToInsert])
         .select()
         .single()
 
