@@ -14,3 +14,4 @@ Allow: /icons/
 Allow: /images/
 Allow: /favicon.ico
 Allow: /manifest.json
+Allow: /ads.txt

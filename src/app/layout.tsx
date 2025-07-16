@@ -89,6 +89,11 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="apple-mobile-web-app-title" content="Task Manager" />
+        <script 
+          async 
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1270353215114134"
+          crossOrigin="anonymous"
+        ></script>
       </head>
       <body className={cn(inter.className, 'min-h-screen bg-background antialiased')}>
         <div className="relative flex min-h-screen flex-col">
