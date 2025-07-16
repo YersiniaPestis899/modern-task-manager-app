@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://your-domain.com/sitemap.xml
+Sitemap: https://modern-task-manager-app.vercel.app/sitemap.xml
 
 # Disallow sensitive pages
 Disallow: /api/
